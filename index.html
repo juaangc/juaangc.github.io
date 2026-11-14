@@ -1,174 +1,215 @@
-<html lang="es"><head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Juan Gutiérrez</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --night: #0b1030;
-      --night-top: #1d2766;
-      --night-deep: #05071a;
-      --gold: #f4c95d;
-      --gold-hover: #fae094;
-      --cream: #fff4dc;
-      --cream-muted: rgba(255, 244, 220, 0.68);
-      --card-bg: rgba(11, 16, 48, 0.65);
-      --border-gold: rgba(244, 201, 93, 0.22);
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-      color: var(--cream);
-      min-height: 100vh;
-      background: radial-gradient(ellipse at 50% 0%, var(--night-top), var(--night) 55%, var(--night-deep)) fixed;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1.5rem;
-      position: relative;
-      overflow-x: hidden;
-    }
-
-    /* Sutil brillo estelar en el fondo */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      opacity: 0.45;
-      background-image: 
-        radial-gradient(1.5px 1.5px at 20% 30%, var(--gold), transparent),
-        radial-gradient(1px 1px at 75% 20%, var(--cream), transparent),
-        radial-gradient(1.5px 1.5px at 85% 65%, var(--gold), transparent),
-        radial-gradient(1px 1px at 30% 80%, var(--cream), transparent);
-    }
-
-    .card {
-      position: relative;
-      z-index: 1;
-      background: var(--card-bg);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid var(--border-gold);
-      border-radius: 24px;
-      padding: 3.5rem 2.5rem;
-      width: 100%;
-      max-width: 420px;
-      text-align: center;
-      box-shadow: 
-        0 25px 50px -12px rgba(5, 7, 26, 0.85),
-        inset 0 1px 0 0 rgba(244, 201, 93, 0.18);
-      animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    h1 {
-      font-size: 2.3rem;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      margin-bottom: 2rem;
-      color: var(--cream);
-    }
-
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.65rem;
-      width: 100%;
-      background-color: var(--gold);
-      color: var(--night-deep);
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 0.95rem;
-      padding: 0.95rem 1.5rem;
-      border-radius: 12px;
-      transition: all 0.25s ease;
-      box-shadow: 0 4px 18px rgba(244, 201, 93, 0.22);
-    }
-
-    .btn-primary:hover {
-      background-color: var(--gold-hover);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(244, 201, 93, 0.35);
-    }
-
-    .btn-primary:active {
-      transform: translateY(0);
-    }
-
-    .btn-primary svg {
-      width: 18px;
-      height: 18px;
-      fill: currentColor;
-      flex-shrink: 0;
-    }
-
-    .divider {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--border-gold), transparent);
-      margin: 2rem 0 1.5rem;
-    }
-
-    .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      width: 100%;
-      padding: 0.85rem 1.25rem;
-      border-radius: 12px;
-      background: rgba(255, 244, 220, 0.04);
-      border: 1px solid rgba(244, 201, 93, 0.18);
-      color: var(--cream-muted);
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 500;
-      transition: all 0.25s ease;
-    }
-
-    .btn-secondary:hover {
-      color: var(--gold);
-      border-color: rgba(244, 201, 93, 0.45);
-      background: rgba(244, 201, 93, 0.06);
-      transform: translateY(-1px);
-    }
-
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(16px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-  </style>
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Juan Gutiérrez Cerdán — Portfolio</title>
+<meta name="description" content="Portfolio de Juan Gutiérrez Cerdán, estudiante de Ingeniería en Tecnologías Industriales (ETSII UPM) y desarrollador web.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+@property --e{syntax:'<length>';inherits:true;initial-value:0px}
+:root{--navy:#14284b;--navy2:#24457c;--steel:#3f6fb0;--bg:#f4f5f7;--line:rgba(20,40,75,.09)}
+*{box-sizing:border-box;margin:0}
+body{min-height:100vh;background:var(--bg);color:var(--navy);font-family:'DM Sans',system-ui,sans-serif;padding:14px}
+.mono{font-family:'IBM Plex Mono',monospace}
+.sheet{position:relative;min-height:calc(100vh - 28px);border:2px solid var(--navy);display:flex;flex-direction:column;
+background:linear-gradient(var(--line) 1px,transparent 1px) 0 0/40px 40px,linear-gradient(90deg,var(--line) 1px,transparent 1px) 0 0/40px 40px,var(--bg)}
+.hd{display:flex;justify-content:space-between;gap:12px;padding:10px 18px;border-bottom:2px solid var(--navy);background:var(--bg);font:600 .7rem 'IBM Plex Mono',monospace;letter-spacing:.12em}
+.stage{--s:clamp(120px,24vmin,210px);flex:1;min-height:480px;position:relative;display:grid;place-items:center;perspective:1700px;overflow:hidden;cursor:grab;touch-action:pan-y;user-select:none}
+.stage:active{cursor:grabbing}
+.title{position:absolute;top:22px;left:0;right:0;text-align:center;pointer-events:none;padding:0 16px}
+.title h1{font-size:clamp(1.5rem,3.6vw,2.5rem);line-height:1.1;font-weight:700;letter-spacing:-.02em}
+.title p{margin-top:6px;font:500 .74rem 'IBM Plex Mono',monospace;letter-spacing:.1em;opacity:.65}
+.shadow{position:absolute;bottom:13%;width:calc(var(--s)*1.7);height:calc(var(--s)*.28);background:radial-gradient(closest-side,rgba(20,40,75,.3),transparent)}
+.hint{position:absolute;bottom:14px;left:0;right:0;text-align:center;font:500 .7rem 'IBM Plex Mono',monospace;letter-spacing:.1em;opacity:.55;pointer-events:none;padding:0 16px}
+.cube{--e:0px;position:relative;width:var(--s);height:var(--s);transform-style:preserve-3d;transition:--e 1.1s cubic-bezier(.65,0,.2,1)}
+.sheet.open .cube{--e:calc(var(--s)*.62)}
+.f{position:absolute;inset:0;padding:0;cursor:pointer;color:#fff;border:1.5px solid rgba(255,255,255,.4);background:linear-gradient(145deg,var(--navy2),var(--navy));display:grid;place-content:center;justify-items:center;gap:calc(var(--s)*.05);font:700 calc(var(--s)*.085) 'DM Sans',sans-serif;backface-visibility:hidden;transform:var(--o) translateZ(calc(var(--s)/2 + var(--e)))}
+.f::after{content:"";position:absolute;inset:0;background:#000;opacity:var(--sh,0);pointer-events:none}
+.f:hover,.f.hl{box-shadow:inset 0 0 0 4px rgba(255,255,255,.6)}
+.f svg{width:calc(var(--s)*.3);height:calc(var(--s)*.3);stroke:#fff;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.f b{position:absolute;top:8%;left:8%;width:calc(var(--s)*.15);height:calc(var(--s)*.15);border:1.5px solid #fff;border-radius:50%;display:grid;place-items:center;font:600 calc(var(--s)*.065) 'IBM Plex Mono',monospace}
+.ax{position:absolute;left:50%;top:50%;transform-style:preserve-3d;transform:var(--o);pointer-events:none}
+.ax i{position:absolute;left:0;top:calc(var(--e)/-2);height:var(--e);border-left:2px dashed var(--steel);transform-style:preserve-3d;transform:translateZ(calc(var(--s)/2 + var(--e)/2)) rotateX(90deg)}
+.ax i::after{content:"";position:absolute;inset:0;border-left:2px dashed var(--steel);transform:rotateY(90deg)}
+.bom{position:absolute;top:104px;left:20px;width:240px;background:var(--bg);border:2px solid var(--navy);opacity:0;transform:translateX(-14px);pointer-events:none;transition:.5s .5s;z-index:2}
+.sheet.open .bom{opacity:1;transform:none;pointer-events:auto}
+.bh{background:var(--navy);color:#fff;padding:8px 12px;font:600 .7rem 'IBM Plex Mono',monospace;letter-spacing:.14em}
+.bom button{all:unset;box-sizing:border-box;display:grid;grid-template-columns:36px 1fr;align-items:center;width:100%;border-top:1px solid var(--navy);cursor:pointer;font-weight:500;font-size:.9rem}
+.bom button span{padding:10px 0;text-align:center;border-right:1px solid currentColor;font:600 .75rem 'IBM Plex Mono',monospace}
+.bom button u{text-decoration:none;padding-left:12px}
+.bom button:hover,.bom button:focus-visible{background:var(--navy);color:#fff}
+@media(max-width:1100px){.bom{position:static;opacity:1;transform:none;pointer-events:auto;margin:0 14px 14px;width:auto}}
+.ft{display:flex;justify-content:space-between;align-items:stretch;flex-wrap:wrap;border-top:2px solid var(--navy);background:var(--bg)}
+.tg{margin:12px 18px;align-self:center;cursor:pointer;border:2px solid var(--navy);background:var(--navy);color:#fff;padding:12px 24px;font:600 .82rem 'IBM Plex Mono',monospace;letter-spacing:.12em;transition:.2s}
+.tg:hover{background:var(--steel);border-color:var(--steel)}
+.tb{display:grid;grid-template-columns:repeat(3,auto);border-left:2px solid var(--navy);font-size:.82rem;font-weight:500}
+.tb div{padding:7px 14px;border-bottom:1px solid var(--navy);border-right:1px solid var(--navy)}
+.tb div:nth-child(3n){border-right:0}.tb div:nth-last-child(-n+3){border-bottom:0}
+.tb small{display:block;font:500 .6rem 'IBM Plex Mono',monospace;letter-spacing:.12em;opacity:.55}
+@media(max-width:700px){.tb{width:100%;border-left:0;border-top:1px solid var(--navy)}.tg{width:calc(100% - 36px)}}
+dialog{margin:auto;border:0;border-radius:6px;padding:0;width:min(92vw,640px);max-height:86vh;background:#fff;color:var(--navy);box-shadow:0 30px 80px rgba(10,20,45,.45)}
+dialog::backdrop{background:rgba(20,40,75,.55);backdrop-filter:blur(3px)}
+dialog[open]{animation:pop .3s}
+@keyframes pop{from{transform:translateY(16px) scale(.97);opacity:0}}
+.m{padding:30px;overflow:auto;max-height:86vh}
+.m h2{font-size:1.8rem;letter-spacing:-.02em;margin-bottom:4px}
+.m .sub{opacity:.65;margin-bottom:18px}
+.m p{line-height:1.6;margin-bottom:12px}
+.m h3{font:600 .72rem 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;margin:20px 0 8px;color:var(--steel)}
+.x{position:sticky;top:0;float:right;cursor:pointer;border:0;background:var(--navy);color:#fff;width:34px;height:34px;border-radius:50%;font-size:1.1rem}
+.x:hover{background:var(--steel)}
+.row{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid rgba(20,40,75,.14)}
+.row b{display:block}.row span{opacity:.65;white-space:nowrap;font-size:.9rem}
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
+.tags i{font-style:normal;font-size:.78rem;background:#e6ebf3;padding:4px 10px;border-radius:99px}
+.card{border:1px solid rgba(20,40,75,.16);border-radius:8px;padding:14px 16px;margin-bottom:12px}
+.card b{font-size:1.05rem}.card p{margin:6px 0 0}
+.card a{color:var(--steel);font-weight:700;font-size:.9rem}
+.avatar{width:84px;height:84px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font:700 1.9rem 'DM Sans',sans-serif;margin-bottom:14px}
+.btn{display:inline-block;margin:6px 8px 0 0;padding:10px 18px;border-radius:99px;background:var(--navy);color:#fff;text-decoration:none;font-weight:700}
+.btn:hover{background:var(--steel)}
+.bar{height:8px;background:#e6ebf3;border-radius:9px;margin-top:6px;overflow:hidden}.bar i{display:block;height:100%;background:var(--navy)}
+@media(prefers-reduced-motion:reduce){*{transition-duration:.01s!important;animation:none!important}}
+</style>
 </head>
 <body>
+<div class="sheet" id="sheet">
+  <div class="hd"><span>PLANO Nº 01 — VISTA EXPLOSIONADA</span><span>ESCALA 1:1 · ISO A3</span></div>
+  <div class="stage" id="stage">
+    <div class="title"><h1>Juan Gutiérrez Cerdán</h1><p>INGENIERÍA EN TECNOLOGÍAS INDUSTRIALES · DESARROLLO WEB</p></div>
+    <div class="shadow"></div>
+    <div class="cube" id="cube"></div>
+    <div class="hint" id="hint">ARRASTRA PARA GIRAR · PULSA EL CUBO PARA DESMONTARLO</div>
+  </div>
+  <nav class="bom" id="bom" aria-label="Lista de piezas"></nav>
+  <div class="ft">
+    <button class="tg" id="tg">DESMONTAR ▸</button>
+    <div class="tb">
+      <div><small>DIBUJADO POR</small>J. Gutiérrez Cerdán</div><div><small>TÍTULO</small>Portfolio personal</div><div><small>ESCALA</small>1:1</div>
+      <div><small>CENTRO</small>ETSII · UPM</div><div><small>FECHA</small>2026</div><div><small>HOJA</small>1 / 1</div>
+    </div>
+  </div>
+</div>
+<dialog id="dlg"></dialog>
 
-  <main class="card">
-    <h1>Juan Gutierrez</h1>
-    
-    <a href="https://www.linkedin.com/in/juan-guti%C3%A9rrez-cerd%C3%A1n/" target="_blank" rel="noopener noreferrer" class="btn-primary">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"></path>
-      </svg>
-      Contactar en LinkedIn
-    </a>
+<script>
+/* ===== CONTENIDO — edita aquí tu información ===== */
+const D = {
+  email: "juanguticerd@gmail.com",
+  linkedin: "https://www.linkedin.com/in/juan-gutierrez-c/",
+  notion: "https://www.notion.so/@juaangc",
+  bio: "Estudiante de Ingeniería en Tecnologías Industriales en la ETSII UPM, enfocado en el diseño funcional, la optimización de procesos y la gestión eficiente de proyectos. Entiendo la ingeniería como la capacidad de transformar problemas complejos en soluciones organizadas, estéticas y técnicamente precisas.",
+  bio2: "En paralelo a mis estudios, desarrollo proyectos web a medida para profesionales y negocios de mi entorno, coordinando cada etapa desde la arquitectura inicial hasta la entrega final. Me mueve la curiosidad, el diseño intuitivo y la búsqueda constante de la eficiencia, tanto en sistemas digitales como industriales.",
+  edu: [
+    ["Universidad Politécnica de Madrid (ETSII)", "Grado en Ingeniería en Tecnologías Industriales", "2025 – 2030"],
+    ["Colegios El Valle", "Bachillerato Científico-Tecnológico", "2023 – 2025"]
+  ],
+  projects: [
+    ["Pedagogía del Bienestar", "Web profesional a medida para la pedagoga Alicia Carnevali: identidad visual, estructura de páginas y publicación.", ["Web a medida", "Diseño", "Cliente real"], "#"],
+    ["StudyHub", "Planificador de estudio como PWA: tareas, exámenes, temporizador Pomodoro y estadísticas.", ["JavaScript", "PWA", "localStorage"], "#"],
+    ["Byka", "Cuaderno de estudiante en un único HTML con sincronización mediante Firebase Firestore.", ["JavaScript", "Firebase"], "#"],
+    ["DentalPro", "Aplicación de gestión para clínica dental con más de 20 módulos, en HTML, CSS y JS puros.", ["SPA", "HTML/CSS/JS"], "#"],
+    ["Experiencia web de Fórmula 1", "Sitio animado dedicado a la Fórmula 1.", ["Animación", "Front-end"], "#"],
+    ["Aprende ANSI-C", "Web de aprendizaje con quiz, tutor y visualizador de memoria, integrando la API de Gemini.", ["C", "IA", "Educación"], "#"]
+  ],
+  skills: ["Diseño web", "SEO", "Planificación de proyectos", "Python", "HTML", "Notion"],
+  certs: ["Python Pro Coding", "Python Start Coding", "HTML Pro Coding", "Notion Advanced Badge", "Notion Workflows Badge"],
+  langs: [["Español", "Nativo", 100], ["Inglés", "Profesional completo", 85], ["Alemán", "Profesional limitado", 40]]
+};
 
-    
+/* ===== ICONOS ===== */
+const I = {
+  id:'<svg viewBox="0 0 48 48"><rect x="5" y="10" width="38" height="28" rx="4"/><circle cx="17" cy="22" r="4"/><path d="M10 33c1-5 12-5 14 0M29 20h9M29 27h7"/></svg>',
+  folder:'<svg viewBox="0 0 48 48"><path d="M5 14a3 3 0 013-3h11l5 6h16a3 3 0 013 3v17a3 3 0 01-3 3H8a3 3 0 01-3-3z"/></svg>',
+  gear:'<svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="7"/><path d="M24 5v6M24 37v6M5 24h6M37 24h6M10.5 10.5l4.2 4.2M33.3 33.3l4.2 4.2M10.5 37.5l4.2-4.2M33.3 14.7l4.2-4.2"/></svg>',
+  badge:'<svg viewBox="0 0 48 48"><circle cx="24" cy="20" r="12"/><path d="M17 30l-4 13 11-5 11 5-4-13M19 20l4 4 7-8"/></svg>',
+  globe:'<svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="18"/><path d="M6 24h36M24 6c-9 10-9 26 0 36M24 6c9 10 9 26 0 36"/></svg>',
+  mail:'<svg viewBox="0 0 48 48"><rect x="5" y="11" width="38" height="26" rx="4"/><path d="M6 14l18 14 18-14"/></svg>'
+};
 
-    
-  </main>
+/* ===== PIEZAS (o = orientación de la cara, n = su normal) ===== */
+const S = [
+  {k:"about", i:"id", t:"Sobre mí", o:"rotateY(0deg)", n:[0,0,1], h:()=>`
+    <div class="avatar">JG</div><h2>Juan Gutiérrez Cerdán</h2><p class="sub">Estudiante de Ingeniería Industrial · Desarrollo web · Madrid</p>
+    <p>${D.bio}</p><p>${D.bio2}</p>
+    <h3>Formación</h3>${D.edu.map(e=>`<div class="row"><div><b>${e[0]}</b>${e[1]}</div><span>${e[2]}</span></div>`).join("")}`},
+  {k:"web", i:"folder", t:"Proyectos web", o:"rotateY(90deg)", n:[1,0,0], h:()=>`
+    <h2>Proyectos web</h2><p class="sub">Desde la arquitectura inicial hasta la entrega final.</p>
+    ${D.projects.map(p=>`<div class="card"><b>${p[0]}</b><p>${p[1]}</p><div class="tags">${p[2].map(t=>`<i>${t}</i>`).join("")}</div>${p[3]!=="#"?`<p><a href="${p[3]}" target="_blank" rel="noopener">Ver proyecto →</a></p>`:""}</div>`).join("")}`},
+  {k:"eng", i:"gear", t:"Ingeniería", o:"rotateX(90deg)", n:[0,-1,0], h:()=>`
+    <h2>Ingeniería</h2><p class="sub">Grado en Ingeniería en Tecnologías Industriales · ETSII UPM</p>
+    <p>Un grado amplio que combina modelado, mecánica y una visión clara de planificación y estructura. Mi enfoque une tres ideas:</p>
+    <div class="card"><b>Diseño funcional</b><p>Soluciones organizadas, estéticas y técnicamente precisas.</p></div>
+    <div class="card"><b>Optimización de procesos</b><p>Eficiencia tanto en sistemas digitales como industriales.</p></div>
+    <div class="card"><b>Gestión de proyectos</b><p>Coordinación ágil y cercana de cada etapa, de la idea a la entrega.</p></div>`},
+  {k:"certs", i:"badge", t:"Certificaciones", o:"rotateY(180deg)", n:[0,0,-1], h:()=>`
+    <h2>Certificaciones</h2><p class="sub">Python, HTML y Notion.</p>
+    ${D.certs.map(c=>`<div class="row"><b>${c}</b></div>`).join("")}
+    <h3>Aptitudes principales</h3><div class="tags">${D.skills.map(t=>`<i>${t}</i>`).join("")}</div>`},
+  {k:"lang", i:"globe", t:"Idiomas", o:"rotateY(-90deg)", n:[-1,0,0], h:()=>`
+    <h2>Idiomas</h2><p class="sub">Para trabajar en equipos y con clientes de cualquier lugar.</p>
+    ${D.langs.map(l=>`<div style="margin-bottom:16px"><div class="row" style="border:0;padding:0"><b>${l[0]}</b><span>${l[1]}</span></div><div class="bar"><i style="width:${l[2]}%"></i></div></div>`).join("")}`},
+  {k:"contact", i:"mail", t:"Contacto", o:"rotateX(-90deg)", n:[0,1,0], h:()=>`
+    <h2>Contacto</h2><p class="sub">¿Tienes un proyecto en mente? Cuéntamelo.</p>
+    <p>Si necesitas una web a medida o quieres colaborar, escríbeme.</p>
+    <a class="btn" href="mailto:${D.email}?subject=Contacto%20desde%20tu%20portfolio">${D.email}</a>
+    <a class="btn" href="${D.linkedin}" target="_blank" rel="noopener">LinkedIn</a>
+    <a class="btn" href="${D.notion}" target="_blank" rel="noopener">Notion</a>`}
+];
 
+/* ===== LÓGICA ===== */
+const $ = id => document.getElementById(id), sheet = $("sheet"), cube = $("cube"), stage = $("stage"), dlg = $("dlg"), tg = $("tg");
+cube.innerHTML = S.map((s,n)=>`<button class="f" data-k="${s.k}" style="--o:${s.o}" aria-label="${s.t}"><b>${n+1}</b>${I[s.i]}<span>${s.t}</span></button><div class="ax" style="--o:${s.o}"><i></i></div>`).join("");
+$("bom").innerHTML = `<div class="bh">LISTA DE PIEZAS</div>` + S.map((s,n)=>`<button data-k="${s.k}"><span>${n+1}</span><u>${s.t}</u></button>`).join("");
+const faces = [...cube.querySelectorAll(".f")];
 
-</body></html>
+function openS(k){ const s = S.find(x=>x.k===k); dlg.innerHTML = `<div class="m"><button class="x" aria-label="Cerrar">×</button>${s.h()}</div>`; dlg.showModal(); }
+function toggle(){
+  const o = sheet.classList.toggle("open");
+  tg.textContent = o ? "◂ MONTAR" : "DESMONTAR ▸";
+  $("hint").textContent = o ? "ARRASTRA PARA GIRAR · PULSA UNA PIEZA PARA VER SU CONTENIDO" : "ARRASTRA PARA GIRAR · PULSA EL CUBO PARA DESMONTARLO";
+}
+tg.onclick = toggle;
+dlg.onclick = e => { if (e.target === dlg || e.target.closest(".x")) dlg.close(); };
+const bom = $("bom");
+bom.onclick = e => { const b = e.target.closest("button[data-k]"); if (b) openS(b.dataset.k); };
+const hl = (e, on) => { const b = e.target.closest("button[data-k]"); if (b) faces.find(f=>f.dataset.k===b.dataset.k).classList.toggle("hl", on); };
+bom.onmouseover = e => hl(e, true); bom.onmouseout = e => hl(e, false);
+
+let rx = -24, ry = -35, t = 0, drag = null, dragged = false, hover = false;
+const reduce = matchMedia("(prefers-reduced-motion:reduce)").matches;
+cube.onclick = e => {
+  if (dragged && e.detail) return;
+  if (!sheet.classList.contains("open")) return toggle();
+  const f = e.target.closest(".f"); if (f) openS(f.dataset.k);
+};
+stage.onpointerdown = e => { drag = {x:e.clientX, y:e.clientY}; dragged = false; };
+stage.onpointerenter = () => hover = true;
+stage.onpointerleave = () => hover = false;
+addEventListener("pointermove", e => {
+  if (!drag) return;
+  const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+  if (Math.abs(dx) + Math.abs(dy) > 3) dragged = true;
+  ry += dx * .5; rx = Math.max(-80, Math.min(80, rx - dy * .5));
+  drag.x = e.clientX; drag.y = e.clientY;
+});
+addEventListener("pointerup", () => drag = null);
+addEventListener("pointercancel", () => drag = null);
+
+(function loop(){
+  if (!reduce && !drag && !hover) { t += .01; ry += .3; rx = Math.max(-40, Math.min(35, rx + Math.sin(t) * .2)); }
+  cube.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+  const A = ry * Math.PI / 180, B = rx * Math.PI / 180, ca = Math.cos(A), sa = Math.sin(A), cb = Math.cos(B), sb = Math.sin(B);
+  faces.forEach((f, i) => {
+    const [x, y, z] = S[i].n, x1 = x*ca + z*sa, z1 = -x*sa + z*ca, y2 = y*cb - z1*sb, z2 = y*sb + z1*cb;
+    const d = -.35*x1 - .55*y2 + .75*z2;
+    f.style.setProperty("--sh", Math.min(.45, Math.max(0, .3 - .33*d)).toFixed(2));
+  });
+  requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>
