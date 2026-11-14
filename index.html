@@ -7,82 +7,132 @@
 <meta name="description" content="Portfolio de Juan Gutiérrez Cerdán, estudiante de Ingeniería en Tecnologías Industriales (ETSII UPM) y desarrollador web.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
 @property --e{syntax:'<length>';inherits:true;initial-value:0px}
-:root{--navy:#14284b;--navy2:#24457c;--steel:#3f6fb0;--bg:#f4f5f7;--line:rgba(20,40,75,.09)}
+:root{--navy:#14284b;--navy2:#24457c;--steel:#3f6fb0;--bg:#f4f5f7;--line:rgba(20,40,75,.08)}
 *{box-sizing:border-box;margin:0}
 body{min-height:100vh;background:var(--bg);color:var(--navy);font-family:'DM Sans',system-ui,sans-serif;padding:14px}
-.mono{font-family:'IBM Plex Mono',monospace}
-.sheet{position:relative;min-height:calc(100vh - 28px);border:2px solid var(--navy);display:flex;flex-direction:column;
-background:linear-gradient(var(--line) 1px,transparent 1px) 0 0/40px 40px,linear-gradient(90deg,var(--line) 1px,transparent 1px) 0 0/40px 40px,var(--bg)}
-.hd{display:flex;justify-content:space-between;gap:12px;padding:10px 18px;border-bottom:2px solid var(--navy);background:var(--bg);font:600 .7rem 'IBM Plex Mono',monospace;letter-spacing:.12em}
-.stage{--s:clamp(120px,24vmin,210px);flex:1;min-height:480px;position:relative;display:grid;place-items:center;perspective:1700px;overflow:hidden;cursor:grab;touch-action:pan-y;user-select:none}
+.sheet{position:relative;overflow:hidden;min-height:calc(100vh - 28px);border:2px solid var(--navy);display:flex;flex-direction:column;
+background:radial-gradient(circle at 88% 12%,rgba(255,183,3,.16),transparent 38%),radial-gradient(circle at 8% 88%,rgba(46,196,182,.18),transparent 40%),radial-gradient(circle at 50% 50%,rgba(143,124,255,.10),transparent 45%),
+linear-gradient(var(--line) 1px,transparent 1px) 0 0/40px 40px,linear-gradient(90deg,var(--line) 1px,transparent 1px) 0 0/40px 40px,var(--bg)}
+.hd,.ft{position:relative;z-index:1;background:var(--bg)}
+.hd{display:flex;justify-content:space-between;gap:12px;padding:10px 18px;border-bottom:2px solid var(--navy);font:600 .7rem 'IBM Plex Mono',monospace;letter-spacing:.12em}
+/* objetos decorativos */
+.dc{position:absolute;pointer-events:none;z-index:0}
+@keyframes spin{to{rotate:360deg}}@keyframes fl{50%{translate:0 -12px}}
+.g{animation:spin 40s linear infinite}.g.r{animation-direction:reverse}
+.g1{left:-60px;bottom:50px;width:230px;opacity:.28}.g2{left:122px;bottom:-34px;width:128px;opacity:.34;animation-duration:24s}
+.g3{right:36px;top:76px;width:120px;opacity:.38;animation-duration:30s}
+.rl{right:26px;bottom:120px;width:230px;transform:rotate(-14deg);animation:fl 6s ease-in-out infinite}
+.pc{left:34px;top:92px;width:170px;transform:rotate(28deg);animation:fl 7s ease-in-out infinite}
+.cp{left:7%;top:46%;width:54px;transform:rotate(-18deg);animation:fl 5s ease-in-out infinite}
+.bt{right:9%;top:48%;width:44px;transform:rotate(12deg);animation:fl 8s ease-in-out infinite}
+@media(max-width:900px){.hm{display:none}}
+.stage{--s:clamp(120px,24vmin,210px);position:relative;z-index:1;flex:1;min-height:480px;display:grid;place-items:center;perspective:1700px;cursor:grab;touch-action:pan-y;user-select:none}
 .stage:active{cursor:grabbing}
 .title{position:absolute;top:22px;left:0;right:0;text-align:center;pointer-events:none;padding:0 16px}
-.title h1{font-size:clamp(1.5rem,3.6vw,2.5rem);line-height:1.1;font-weight:700;letter-spacing:-.02em}
+.title h1{font-size:clamp(1.5rem,3.6vw,2.5rem);line-height:1.1;font-weight:800;letter-spacing:-.02em}
 .title p{margin-top:6px;font:500 .74rem 'IBM Plex Mono',monospace;letter-spacing:.1em;opacity:.65}
-.shadow{position:absolute;bottom:13%;width:calc(var(--s)*1.7);height:calc(var(--s)*.28);background:radial-gradient(closest-side,rgba(20,40,75,.3),transparent)}
-.hint{position:absolute;bottom:14px;left:0;right:0;text-align:center;font:500 .7rem 'IBM Plex Mono',monospace;letter-spacing:.1em;opacity:.55;pointer-events:none;padding:0 16px}
-.cube{--e:0px;position:relative;width:var(--s);height:var(--s);transform-style:preserve-3d;transition:--e 1.1s cubic-bezier(.65,0,.2,1)}
+.glow{position:absolute;width:calc(var(--s)*3.2);aspect-ratio:1;background:radial-gradient(circle,rgba(63,111,176,.25),transparent 65%)}
+.shadow{position:absolute;bottom:12%;width:calc(var(--s)*1.7);height:calc(var(--s)*.28);background:radial-gradient(closest-side,rgba(20,40,75,.32),transparent)}
+.hint{position:absolute;bottom:14px;left:0;right:0;text-align:center;font:500 .7rem 'IBM Plex Mono',monospace;letter-spacing:.1em;opacity:.6;pointer-events:none;padding:0 16px}
+.core{position:absolute;width:calc(var(--s)*.95);aspect-ratio:1;transform:scale(0);transition:transform .9s .3s cubic-bezier(.3,1.5,.5,1);filter:drop-shadow(0 0 16px rgba(255,183,3,.7))}
+.sheet.open .core{transform:scale(1)}.core div{animation:spin 8s linear infinite}
+/* cubo con paredes gruesas */
+.cube{--e:0px;--t:calc(var(--s)*.16);--w:calc(var(--s) - 4px);position:relative;width:var(--s);height:var(--s);transform-style:preserve-3d;transition:--e 1.1s cubic-bezier(.65,0,.2,1)}
+.cube.peek{--e:calc(var(--s)*.2)}
+.hit{position:absolute;inset:-35%}
 .sheet.open .cube{--e:calc(var(--s)*.62)}
-.f{position:absolute;inset:0;padding:0;cursor:pointer;color:#fff;border:1.5px solid rgba(255,255,255,.4);background:linear-gradient(145deg,var(--navy2),var(--navy));display:grid;place-content:center;justify-items:center;gap:calc(var(--s)*.05);font:700 calc(var(--s)*.085) 'DM Sans',sans-serif;backface-visibility:hidden;transform:var(--o) translateZ(calc(var(--s)/2 + var(--e)))}
-.f::after{content:"";position:absolute;inset:0;background:#000;opacity:var(--sh,0);pointer-events:none}
-.f:hover,.f.hl{box-shadow:inset 0 0 0 4px rgba(255,255,255,.6)}
-.f svg{width:calc(var(--s)*.3);height:calc(var(--s)*.3);stroke:#fff;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
-.f b{position:absolute;top:8%;left:8%;width:calc(var(--s)*.15);height:calc(var(--s)*.15);border:1.5px solid #fff;border-radius:50%;display:grid;place-items:center;font:600 calc(var(--s)*.065) 'IBM Plex Mono',monospace}
-.ax{position:absolute;left:50%;top:50%;transform-style:preserve-3d;transform:var(--o);pointer-events:none}
-.ax i{position:absolute;left:0;top:calc(var(--e)/-2);height:var(--e);border-left:2px dashed var(--steel);transform-style:preserve-3d;transform:translateZ(calc(var(--s)/2 + var(--e)/2)) rotateX(90deg)}
-.ax i::after{content:"";position:absolute;inset:0;border-left:2px dashed var(--steel);transform:rotateY(90deg)}
-.bom{position:absolute;top:104px;left:20px;width:240px;background:var(--bg);border:2px solid var(--navy);opacity:0;transform:translateX(-14px);pointer-events:none;transition:.5s .5s;z-index:2}
+.p{position:absolute;left:50%;top:50%;transform-style:preserve-3d;cursor:pointer;transform:var(--o) translateZ(calc(var(--s)/2 - var(--t)/2 + var(--e)))}
+.o,.in,.ed{position:absolute}
+.o,.in{width:var(--w);height:var(--w);margin:calc(var(--w)/-2) 0 0 calc(var(--w)/-2);backface-visibility:hidden;display:grid;place-content:center;justify-items:center;gap:calc(var(--s)*.04);color:#fff;text-align:center;font:700 calc(var(--s)*.085) 'DM Sans',sans-serif}
+.o{transform:translateZ(calc(var(--t)/2));
+background:radial-gradient(circle at 8% 8%,#fff 0 2px,transparent 3px),radial-gradient(circle at 92% 8%,#fff 0 2px,transparent 3px),radial-gradient(circle at 8% 92%,#fff 0 2px,transparent 3px),radial-gradient(circle at 92% 92%,#fff 0 2px,transparent 3px),
+linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px) 0 0/16px 16px,linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/16px 16px,linear-gradient(145deg,var(--navy2),var(--navy));
+box-shadow:inset 0 0 0 3px color-mix(in srgb,var(--c) 85%,#000),inset 6px 6px 0 rgba(255,255,255,.15),inset -6px -6px 0 rgba(0,0,0,.3)}
+.o::before{content:"";position:absolute;inset:9%;border:1.5px dashed color-mix(in srgb,var(--c) 75%,transparent);border-radius:4px}
+.o::after,.in::after{content:"";position:absolute;inset:0;background:#000;opacity:var(--sh,0);pointer-events:none}
+.in{transform:rotateY(180deg) translateZ(calc(var(--t)/2));font-size:calc(var(--s)*.07);background:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px) 0 0/16px 16px,linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px) 0 0/16px 16px,#0b1830;box-shadow:inset 0 0 0 3px color-mix(in srgb,var(--c) 55%,#000)}
+.in::after{opacity:0}
+.o b,.in b{position:absolute;top:12%;left:12%;width:calc(var(--s)*.15);height:calc(var(--s)*.15);border:1.5px solid var(--c);color:var(--c);border-radius:50%;display:grid;place-items:center;font:600 calc(var(--s)*.065) 'IBM Plex Mono',monospace}
+.ic{width:calc(var(--s)*.34);height:calc(var(--s)*.34);border-radius:50%;background:var(--c);display:grid;place-items:center;box-shadow:0 4px 0 rgba(0,0,0,.35);transition:transform .25s}
+.ic svg,.chip svg{width:58%;height:58%;stroke:var(--navy);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.p:hover .ic,.p.hl .ic{transform:scale(1.14) rotate(-6deg)}
+.p:hover .o::after,.p.hl .o::after{opacity:0}
+.et,.eb{width:var(--w);height:var(--t);margin:calc(var(--t)/-2) 0 0 calc(var(--w)/-2)}
+.el,.er{width:var(--t);height:var(--w);margin:calc(var(--w)/-2) 0 0 calc(var(--t)/-2)}
+.et{transform:translateY(calc(var(--w)/-2)) rotateX(90deg);background:var(--c)}
+.eb{transform:translateY(calc(var(--w)/2)) rotateX(90deg);background:color-mix(in srgb,var(--c) 55%,#000)}
+.el{transform:translateX(calc(var(--w)/-2)) rotateY(90deg);background:color-mix(in srgb,var(--c) 78%,#000)}
+.er{transform:translateX(calc(var(--w)/2)) rotateY(90deg);background:color-mix(in srgb,var(--c) 68%,#000)}
+.ax{--h:calc(var(--s)/2 - var(--t) + var(--e));position:absolute;left:50%;top:50%;transform-style:preserve-3d;transform:var(--o);pointer-events:none}
+.ax i{position:absolute;left:0;top:calc(var(--h)/-2);height:var(--h);border-left:2px dashed var(--c);transform-style:preserve-3d;transform:translateZ(calc(var(--h)/2)) rotateX(90deg)}
+.ax i::after{content:"";position:absolute;inset:0;border-left:2px dashed var(--c);transform:rotateY(90deg)}
+/* lista de piezas */
+.bom{position:absolute;top:104px;left:20px;width:240px;background:var(--bg);border:2px solid var(--navy);box-shadow:5px 5px 0 var(--navy);opacity:0;transform:translateX(-14px);pointer-events:none;transition:.5s .5s;z-index:2}
 .sheet.open .bom{opacity:1;transform:none;pointer-events:auto}
 .bh{background:var(--navy);color:#fff;padding:8px 12px;font:600 .7rem 'IBM Plex Mono',monospace;letter-spacing:.14em}
 .bom button{all:unset;box-sizing:border-box;display:grid;grid-template-columns:36px 1fr;align-items:center;width:100%;border-top:1px solid var(--navy);cursor:pointer;font-weight:500;font-size:.9rem}
-.bom button span{padding:10px 0;text-align:center;border-right:1px solid currentColor;font:600 .75rem 'IBM Plex Mono',monospace}
+.bom button span{padding:10px 0;text-align:center;border-right:1px solid var(--navy);color:var(--navy);font:600 .75rem 'IBM Plex Mono',monospace}
 .bom button u{text-decoration:none;padding-left:12px}
 .bom button:hover,.bom button:focus-visible{background:var(--navy);color:#fff}
-@media(max-width:1100px){.bom{position:static;opacity:1;transform:none;pointer-events:auto;margin:0 14px 14px;width:auto}}
-.ft{display:flex;justify-content:space-between;align-items:stretch;flex-wrap:wrap;border-top:2px solid var(--navy);background:var(--bg)}
-.tg{margin:12px 18px;align-self:center;cursor:pointer;border:2px solid var(--navy);background:var(--navy);color:#fff;padding:12px 24px;font:600 .82rem 'IBM Plex Mono',monospace;letter-spacing:.12em;transition:.2s}
-.tg:hover{background:var(--steel);border-color:var(--steel)}
+@media(max-width:1100px){.bom{position:static;opacity:1;transform:none;pointer-events:auto;margin:0 14px 14px;width:auto;z-index:1}}
+.ft{display:flex;justify-content:space-between;align-items:stretch;flex-wrap:wrap;border-top:2px solid var(--navy)}
+.tg{margin:12px 18px;align-self:center;cursor:pointer;border:2px solid var(--navy);background:var(--navy);color:#fff;padding:12px 24px;font:600 .82rem 'IBM Plex Mono',monospace;letter-spacing:.12em;box-shadow:4px 4px 0 #ffb703;transition:.2s}
+.tg:hover{background:var(--steel);border-color:var(--steel);transform:translate(-1px,-1px)}
 .tb{display:grid;grid-template-columns:repeat(3,auto);border-left:2px solid var(--navy);font-size:.82rem;font-weight:500}
 .tb div{padding:7px 14px;border-bottom:1px solid var(--navy);border-right:1px solid var(--navy)}
 .tb div:nth-child(3n){border-right:0}.tb div:nth-last-child(-n+3){border-bottom:0}
 .tb small{display:block;font:500 .6rem 'IBM Plex Mono',monospace;letter-spacing:.12em;opacity:.55}
 @media(max-width:700px){.tb{width:100%;border-left:0;border-top:1px solid var(--navy)}.tg{width:calc(100% - 36px)}}
-dialog{margin:auto;border:0;border-radius:6px;padding:0;width:min(92vw,640px);max-height:86vh;background:#fff;color:var(--navy);box-shadow:0 30px 80px rgba(10,20,45,.45)}
+/* ventanas */
+dialog{--c:#ffb703;margin:auto;border:0;border-top:7px solid var(--c);border-radius:8px;padding:0;width:min(92vw,680px);max-height:86vh;background:#fff;color:var(--navy);box-shadow:0 30px 80px rgba(10,20,45,.45)}
 dialog::backdrop{background:rgba(20,40,75,.55);backdrop-filter:blur(3px)}
 dialog[open]{animation:pop .3s}
 @keyframes pop{from{transform:translateY(16px) scale(.97);opacity:0}}
-.m{padding:30px;overflow:auto;max-height:86vh}
-.m h2{font-size:1.8rem;letter-spacing:-.02em;margin-bottom:4px}
+.m{padding:28px 30px;overflow:auto;max-height:calc(86vh - 7px)}
+.chip{width:52px;height:52px;border-radius:50%;background:var(--c);display:grid;place-items:center;margin-bottom:12px;box-shadow:0 4px 0 rgba(20,40,75,.25)}
+.m h2{font-size:1.8rem;font-weight:800;letter-spacing:-.02em;margin-bottom:4px}
 .m .sub{opacity:.65;margin-bottom:18px}
 .m p{line-height:1.6;margin-bottom:12px}
 .m h3{font:600 .72rem 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;margin:20px 0 8px;color:var(--steel)}
 .x{position:sticky;top:0;float:right;cursor:pointer;border:0;background:var(--navy);color:#fff;width:34px;height:34px;border-radius:50%;font-size:1.1rem}
 .x:hover{background:var(--steel)}
 .row{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid rgba(20,40,75,.14)}
-.row b{display:block}.row span{opacity:.65;white-space:nowrap;font-size:.9rem}
+.row b{display:block}.row span{opacity:.65;font-size:.9rem}
 .tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
-.tags i{font-style:normal;font-size:.78rem;background:#e6ebf3;padding:4px 10px;border-radius:99px}
-.card{border:1px solid rgba(20,40,75,.16);border-radius:8px;padding:14px 16px;margin-bottom:12px}
+.tags i{font-style:normal;font-size:.78rem;font-weight:500;background:color-mix(in srgb,var(--c) 28%,#fff);padding:4px 11px;border-radius:99px}
+.card{border:1px solid rgba(20,40,75,.16);border-left:5px solid var(--c);border-radius:8px;padding:14px 16px;margin-bottom:12px}
 .card b{font-size:1.05rem}.card p{margin:6px 0 0}
-.card a{color:var(--steel);font-weight:700;font-size:.9rem}
-.avatar{width:84px;height:84px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font:700 1.9rem 'DM Sans',sans-serif;margin-bottom:14px}
+.avatar{width:84px;height:84px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font:800 1.9rem 'DM Sans',sans-serif;margin-bottom:14px;box-shadow:0 0 0 5px var(--c)}
 .btn{display:inline-block;margin:6px 8px 0 0;padding:10px 18px;border-radius:99px;background:var(--navy);color:#fff;text-decoration:none;font-weight:700}
 .btn:hover{background:var(--steel)}
-.bar{height:8px;background:#e6ebf3;border-radius:9px;margin-top:6px;overflow:hidden}.bar i{display:block;height:100%;background:var(--navy)}
+.bar{height:9px;background:#e6ebf3;border-radius:9px;margin-top:6px;overflow:hidden}.bar i{display:block;height:100%;background:var(--c)}
+.pj{border:1px solid rgba(20,40,75,.16);border-radius:10px;overflow:hidden;margin-bottom:16px}
+.br{height:96px;position:relative;display:flex;align-items:flex-end;padding:10px 14px;color:#fff}
+.br em{position:absolute;top:14px;left:12px;display:flex;gap:4px}.br s{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.75)}
+.br u{position:absolute;top:9px;left:56px;right:12px;background:rgba(255,255,255,.25);border-radius:99px;padding:2px 10px;font:500 .7rem 'IBM Plex Mono',monospace;text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.br strong{font:800 1.7rem 'DM Sans',sans-serif;text-shadow:0 2px 0 rgba(0,0,0,.2)}
+.pb{padding:14px 16px 16px}.pb small{font:600 .68rem 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--steel)}
+.pb b{display:block;font-size:1.15rem;margin:2px 0 6px}.pb p{margin-bottom:6px}.pb ul{padding-left:18px;line-height:1.55;font-size:.93rem}
 @media(prefers-reduced-motion:reduce){*{transition-duration:.01s!important;animation:none!important}}
 </style>
 </head>
 <body>
 <div class="sheet" id="sheet">
   <div class="hd"><span>PLANO Nº 01 — VISTA EXPLOSIONADA</span><span>ESCALA 1:1 · ISO A3</span></div>
+  <div class="dc g g1" data-g="14,#2ec4b6"></div><div class="dc g r g2 hm" data-g="8,#ff6b5a"></div><div class="dc g g3 hm" data-g="10,#ffb703"></div>
+  <svg class="dc rl hm" viewBox="0 0 260 40"><rect width="260" height="40" rx="4" fill="#ffb703"/><path d="M10 0v14M30 0v9M50 0v14M70 0v9M90 0v14M110 0v9M130 0v14M150 0v9M170 0v14M190 0v9M210 0v14M230 0v9M250 0v14" stroke="#14284b" stroke-width="2"/></svg>
+  <svg class="dc pc hm" viewBox="0 0 190 20"><rect width="150" height="14" y="3" fill="#ff6b5a"/><rect width="150" height="3" y="3" fill="#ffb703" opacity=".9"/><path d="M150 3l36 7-36 7z" fill="#f2d6a8"/><path d="M174 8l12 2-12 2z" fill="#14284b"/></svg>
+  <svg class="dc cp hm" viewBox="0 0 80 110"><circle cx="40" cy="14" r="9" fill="#8f7cff"/><path d="M40 20L12 104M40 20l28 84" stroke="#14284b" stroke-width="5" stroke-linecap="round" fill="none"/></svg>
+  <svg class="dc bt hm" viewBox="0 0 60 60"><path d="M30 4l23 13v26L30 56 7 43V17z" fill="#4cc9f0"/><circle cx="30" cy="30" r="11" fill="#f4f5f7"/></svg>
   <div class="stage" id="stage">
     <div class="title"><h1>Juan Gutiérrez Cerdán</h1><p>INGENIERÍA EN TECNOLOGÍAS INDUSTRIALES · DESARROLLO WEB</p></div>
-    <div class="shadow"></div>
+    <div class="glow"></div><div class="shadow"></div>
+    <div class="core"><div id="cg"></div></div>
     <div class="cube" id="cube"></div>
-    <div class="hint" id="hint">ARRASTRA PARA GIRAR · PULSA EL CUBO PARA DESMONTARLO</div>
+    <div class="hint">ARRASTRA PARA GIRAR · PASA EL CURSOR PARA ENTREABRIRLO · PULSA UNA CARA PARA ABRIR SU SECCIÓN</div>
   </div>
   <nav class="bom" id="bom" aria-label="Lista de piezas"></nav>
   <div class="ft">
@@ -108,19 +158,22 @@ const D = {
     ["Colegios El Valle", "Bachillerato Científico-Tecnológico", "2023 – 2025"]
   ],
   projects: [
-    ["Pedagogía del Bienestar", "Web profesional a medida para la pedagoga Alicia Carnevali: identidad visual, estructura de páginas y publicación.", ["Web a medida", "Diseño", "Cliente real"], "#"],
-    ["StudyHub", "Planificador de estudio como PWA: tareas, exámenes, temporizador Pomodoro y estadísticas.", ["JavaScript", "PWA", "localStorage"], "#"],
-    ["Byka", "Cuaderno de estudiante en un único HTML con sincronización mediante Firebase Firestore.", ["JavaScript", "Firebase"], "#"],
-    ["DentalPro", "Aplicación de gestión para clínica dental con más de 20 módulos, en HTML, CSS y JS puros.", ["SPA", "HTML/CSS/JS"], "#"],
-    ["Experiencia web de Fórmula 1", "Sitio animado dedicado a la Fórmula 1.", ["Animación", "Front-end"], "#"],
-    ["Aprende ANSI-C", "Web de aprendizaje con quiz, tutor y visualizador de memoria, integrando la API de Gemini.", ["C", "IA", "Educación"], "#"]
+    {n:"Albus Dental Studio", ini:"Albus", cat:"Clínica dental · Mirasierra, Madrid", bg:"linear-gradient(120deg,#0e7c86,#2ec4b6)", url:"albusdental.com", href:"https://albusdental.com/",
+     d:"Desarrollo web para una clínica dental boutique del norte de Madrid, dirigida por la Dra. Isabel Giráldez y el Dr. Juan Esteve. Una web pensada para transmitir confianza y facilitar que el paciente pida cita.",
+     pts:["Presentación de la clínica, el equipo y la tecnología (iTero, Airflow®, microscopio, fotografía dental)","Páginas de tratamientos: estética, implantología, ortodoncia, Albus Kids, blanqueamiento, periodoncia, endodoncia, bruxismo y sedación consciente","Blog, reseñas de pacientes, horarios, mapa y contacto directo"]},
+    {n:"Alicia Carnevali", ini:"Alicia Carnevali", cat:"Proyecto educativo personal · Pedagogía del Bienestar", bg:"linear-gradient(120deg,#1f5f5b,#b5367a)", url:"próximamente", href:"#",
+     d:"Desarrollo web de un proyecto educativo personal para una pedagoga. Identidad visual propia con tipografías Cormorant Garamond e Inter y una paleta de marfil, verde petróleo y magenta.",
+     pts:["Inicio, Sobre mí y una página de formación organizada en Educación y Personas y organizaciones","Propuestas como Comprender cómo funcionamos, Crecer Respirando y Volver a ti","Blog con sección de autora"]},
+    {n:"La Casa Azul", ini:"La Casa Azul", cat:"Casa rural · Brieva, Segovia", bg:"linear-gradient(120deg,#1d4ed8,#60a5fa)", url:"brievacasaazul.com", href:"https://www.brievacasaazul.com/",
+     d:"Web de una casa rural histórica de 500 m² en Brieva (Segovia), con 26 plazas y 7 dormitorios, pensada para dar a conocer la casa y su entorno.",
+     pts:["La casa: servicios, historia y apariciones en medios","Qué hacer: sitios de interés, rutas y gastronomía","Reseñas, contacto y enlace a la disponibilidad"]}
   ],
+  others: [["StudyHub", "Planificador de estudio PWA con tareas, exámenes, Pomodoro y estadísticas."], ["Byka", "Cuaderno de estudiante en un solo HTML con Firebase Firestore."], ["DentalPro", "Gestión de clínica dental con más de 20 módulos en JS puro."]],
   skills: ["Diseño web", "SEO", "Planificación de proyectos", "Python", "HTML", "Notion"],
   certs: ["Python Pro Coding", "Python Start Coding", "HTML Pro Coding", "Notion Advanced Badge", "Notion Workflows Badge"],
   langs: [["Español", "Nativo", 100], ["Inglés", "Profesional completo", 85], ["Alemán", "Profesional limitado", 40]]
 };
 
-/* ===== ICONOS ===== */
 const I = {
   id:'<svg viewBox="0 0 48 48"><rect x="5" y="10" width="38" height="28" rx="4"/><circle cx="17" cy="22" r="4"/><path d="M10 33c1-5 12-5 14 0M29 20h9M29 27h7"/></svg>',
   folder:'<svg viewBox="0 0 48 48"><path d="M5 14a3 3 0 013-3h11l5 6h16a3 3 0 013 3v17a3 3 0 01-3 3H8a3 3 0 01-3-3z"/></svg>',
@@ -130,29 +183,31 @@ const I = {
   mail:'<svg viewBox="0 0 48 48"><rect x="5" y="11" width="38" height="26" rx="4"/><path d="M6 14l18 14 18-14"/></svg>'
 };
 
-/* ===== PIEZAS (o = orientación de la cara, n = su normal) ===== */
+/* ===== PIEZAS (c = color, o = orientación, n = normal) ===== */
 const S = [
-  {k:"about", i:"id", t:"Sobre mí", o:"rotateY(0deg)", n:[0,0,1], h:()=>`
+  {k:"about", i:"id", t:"Sobre mí", c:"#ffb703", o:"rotateY(0deg)", n:[0,0,1], h:()=>`
     <div class="avatar">JG</div><h2>Juan Gutiérrez Cerdán</h2><p class="sub">Estudiante de Ingeniería Industrial · Desarrollo web · Madrid</p>
     <p>${D.bio}</p><p>${D.bio2}</p>
     <h3>Formación</h3>${D.edu.map(e=>`<div class="row"><div><b>${e[0]}</b>${e[1]}</div><span>${e[2]}</span></div>`).join("")}`},
-  {k:"web", i:"folder", t:"Proyectos web", o:"rotateY(90deg)", n:[1,0,0], h:()=>`
-    <h2>Proyectos web</h2><p class="sub">Desde la arquitectura inicial hasta la entrega final.</p>
-    ${D.projects.map(p=>`<div class="card"><b>${p[0]}</b><p>${p[1]}</p><div class="tags">${p[2].map(t=>`<i>${t}</i>`).join("")}</div>${p[3]!=="#"?`<p><a href="${p[3]}" target="_blank" rel="noopener">Ver proyecto →</a></p>`:""}</div>`).join("")}`},
-  {k:"eng", i:"gear", t:"Ingeniería", o:"rotateX(90deg)", n:[0,-1,0], h:()=>`
+  {k:"web", i:"folder", t:"Proyectos web", c:"#2ec4b6", o:"rotateY(90deg)", n:[1,0,0], h:()=>`
+    <h2>Proyectos web</h2><p class="sub">Desarrollo a medida, de la arquitectura inicial a la entrega final.</p>
+    ${D.projects.map(p=>`<div class="pj"><div class="br" style="background:${p.bg}"><em><s></s><s></s><s></s></em><u>${p.url}</u><strong>${p.ini}</strong></div>
+    <div class="pb"><small>${p.cat}</small><b>${p.n}</b><p>${p.d}</p><ul>${p.pts.map(x=>`<li>${x}</li>`).join("")}</ul>${p.href!=="#"?`<a class="btn" href="${p.href}" target="_blank" rel="noopener">Visitar web ↗</a>`:""}</div></div>`).join("")}
+    <h3>Otros proyectos</h3>${D.others.map(o=>`<div class="row"><div><b>${o[0]}</b>${o[1]}</div></div>`).join("")}`},
+  {k:"eng", i:"gear", t:"Ingeniería", c:"#ff6b5a", o:"rotateX(90deg)", n:[0,-1,0], h:()=>`
     <h2>Ingeniería</h2><p class="sub">Grado en Ingeniería en Tecnologías Industriales · ETSII UPM</p>
     <p>Un grado amplio que combina modelado, mecánica y una visión clara de planificación y estructura. Mi enfoque une tres ideas:</p>
     <div class="card"><b>Diseño funcional</b><p>Soluciones organizadas, estéticas y técnicamente precisas.</p></div>
     <div class="card"><b>Optimización de procesos</b><p>Eficiencia tanto en sistemas digitales como industriales.</p></div>
     <div class="card"><b>Gestión de proyectos</b><p>Coordinación ágil y cercana de cada etapa, de la idea a la entrega.</p></div>`},
-  {k:"certs", i:"badge", t:"Certificaciones", o:"rotateY(180deg)", n:[0,0,-1], h:()=>`
+  {k:"certs", i:"badge", t:"Certificaciones", c:"#8f7cff", o:"rotateY(180deg)", n:[0,0,-1], h:()=>`
     <h2>Certificaciones</h2><p class="sub">Python, HTML y Notion.</p>
     ${D.certs.map(c=>`<div class="row"><b>${c}</b></div>`).join("")}
     <h3>Aptitudes principales</h3><div class="tags">${D.skills.map(t=>`<i>${t}</i>`).join("")}</div>`},
-  {k:"lang", i:"globe", t:"Idiomas", o:"rotateY(-90deg)", n:[-1,0,0], h:()=>`
+  {k:"lang", i:"globe", t:"Idiomas", c:"#4cc9f0", o:"rotateY(-90deg)", n:[-1,0,0], h:()=>`
     <h2>Idiomas</h2><p class="sub">Para trabajar en equipos y con clientes de cualquier lugar.</p>
     ${D.langs.map(l=>`<div style="margin-bottom:16px"><div class="row" style="border:0;padding:0"><b>${l[0]}</b><span>${l[1]}</span></div><div class="bar"><i style="width:${l[2]}%"></i></div></div>`).join("")}`},
-  {k:"contact", i:"mail", t:"Contacto", o:"rotateX(-90deg)", n:[0,1,0], h:()=>`
+  {k:"contact", i:"mail", t:"Contacto", c:"#5fd38d", o:"rotateX(-90deg)", n:[0,1,0], h:()=>`
     <h2>Contacto</h2><p class="sub">¿Tienes un proyecto en mente? Cuéntamelo.</p>
     <p>Si necesitas una web a medida o quieres colaborar, escríbeme.</p>
     <a class="btn" href="mailto:${D.email}?subject=Contacto%20desde%20tu%20portfolio">${D.email}</a>
@@ -161,52 +216,51 @@ const S = [
 ];
 
 /* ===== LÓGICA ===== */
-const $ = id => document.getElementById(id), sheet = $("sheet"), cube = $("cube"), stage = $("stage"), dlg = $("dlg"), tg = $("tg");
-cube.innerHTML = S.map((s,n)=>`<button class="f" data-k="${s.k}" style="--o:${s.o}" aria-label="${s.t}"><b>${n+1}</b>${I[s.i]}<span>${s.t}</span></button><div class="ax" style="--o:${s.o}"><i></i></div>`).join("");
-$("bom").innerHTML = `<div class="bh">LISTA DE PIEZAS</div>` + S.map((s,n)=>`<button data-k="${s.k}"><span>${n+1}</span><u>${s.t}</u></button>`).join("");
-const faces = [...cube.querySelectorAll(".f")];
+const $ = id => document.getElementById(id), sheet = $("sheet"), cube = $("cube"), stage = $("stage"), dlg = $("dlg"), tg = $("tg"), bom = $("bom");
+const gear = (c, n, h = .22) => { let d = ""; const N = n * 4;
+  for (let i = 0; i < N; i++) { const a = (i + .5) / N * Math.PI * 2, r = (i % 4 === 1 || i % 4 === 2) ? 48 : 38; d += (i ? "L" : "M") + (50 + r * Math.sin(a)).toFixed(1) + " " + (50 - r * Math.cos(a)).toFixed(1); }
+  const q = h * 100; return `<svg viewBox="0 0 100 100"><path fill="${c}" fill-rule="evenodd" d="${d}ZM${50 + q} 50a${q} ${q} 0 1 0 ${-2 * q} 0a${q} ${q} 0 1 0 ${2 * q} 0Z"/></svg>`; };
+document.querySelectorAll("[data-g]").forEach(el => { const [n, c] = el.dataset.g.split(","); el.innerHTML = gear(c, +n); });
+$("cg").innerHTML = gear("#ffb703", 12, .2);
 
-function openS(k){ const s = S.find(x=>x.k===k); dlg.innerHTML = `<div class="m"><button class="x" aria-label="Cerrar">×</button>${s.h()}</div>`; dlg.showModal(); }
-function toggle(){
-  const o = sheet.classList.toggle("open");
-  tg.textContent = o ? "◂ MONTAR" : "DESMONTAR ▸";
-  $("hint").textContent = o ? "ARRASTRA PARA GIRAR · PULSA UNA PIEZA PARA VER SU CONTENIDO" : "ARRASTRA PARA GIRAR · PULSA EL CUBO PARA DESMONTARLO";
-}
-tg.onclick = toggle;
+cube.innerHTML = '<div class="hit"></div>' + S.map((s, n) => `<div class="p" data-k="${s.k}" title="${s.t}" style="--o:${s.o};--c:${s.c}">
+  <div class="o"><b>${n+1}</b><div class="ic">${I[s.i]}</div><span>${s.t}</span></div>
+  <div class="in"><b>${n+1}</b><span>${s.t}</span></div>
+  <div class="ed et"></div><div class="ed eb"></div><div class="ed el"></div><div class="ed er"></div></div>
+  <div class="ax" style="--o:${s.o};--c:${s.c}"><i></i></div>`).join("");
+bom.innerHTML = `<div class="bh">LISTA DE PIEZAS</div>` + S.map((s, n) => `<button data-k="${s.k}"><span style="background:${s.c}">${n+1}</span><u>${s.t}</u></button>`).join("");
+const ps = [...cube.querySelectorAll(".p")];
+
+function openS(k){ const s = S.find(x => x.k === k); dlg.style.setProperty("--c", s.c);
+  dlg.innerHTML = `<div class="m"><button class="x" aria-label="Cerrar">×</button><div class="chip">${I[s.i]}</div>${s.h()}</div>`; dlg.showModal(); }
+tg.onclick = () => { const o = sheet.classList.toggle("open"); tg.textContent = o ? "◂ MONTAR" : "DESMONTAR ▸"; };
 dlg.onclick = e => { if (e.target === dlg || e.target.closest(".x")) dlg.close(); };
-const bom = $("bom");
 bom.onclick = e => { const b = e.target.closest("button[data-k]"); if (b) openS(b.dataset.k); };
-const hl = (e, on) => { const b = e.target.closest("button[data-k]"); if (b) faces.find(f=>f.dataset.k===b.dataset.k).classList.toggle("hl", on); };
+const hl = (e, on) => { const b = e.target.closest("button[data-k]"); if (b) ps.find(p => p.dataset.k === b.dataset.k).classList.toggle("hl", on); };
 bom.onmouseover = e => hl(e, true); bom.onmouseout = e => hl(e, false);
 
 let rx = -24, ry = -35, t = 0, drag = null, dragged = false, hover = false;
 const reduce = matchMedia("(prefers-reduced-motion:reduce)").matches;
-cube.onclick = e => {
-  if (dragged && e.detail) return;
-  if (!sheet.classList.contains("open")) return toggle();
-  const f = e.target.closest(".f"); if (f) openS(f.dataset.k);
-};
+cube.onclick = e => { if (dragged && e.detail) return; const p = e.target.closest(".p"); if (p) openS(p.dataset.k); };
 stage.onpointerdown = e => { drag = {x:e.clientX, y:e.clientY}; dragged = false; };
-stage.onpointerenter = () => hover = true;
-stage.onpointerleave = () => hover = false;
+cube.onpointerover = () => { hover = true; cube.classList.add("peek"); };
+cube.onpointerout = e => { if (!cube.contains(e.relatedTarget)) { hover = false; cube.classList.remove("peek"); } };
 addEventListener("pointermove", e => {
   if (!drag) return;
   const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
   if (Math.abs(dx) + Math.abs(dy) > 3) dragged = true;
-  ry += dx * .5; rx = Math.max(-80, Math.min(80, rx - dy * .5));
-  drag.x = e.clientX; drag.y = e.clientY;
+  ry += dx * .5; rx = Math.max(-80, Math.min(80, rx - dy * .5)); drag.x = e.clientX; drag.y = e.clientY;
 });
 addEventListener("pointerup", () => drag = null);
 addEventListener("pointercancel", () => drag = null);
 
 (function loop(){
-  if (!reduce && !drag && !hover) { t += .01; ry += .3; rx = Math.max(-40, Math.min(35, rx + Math.sin(t) * .2)); }
+  if (!reduce && !drag) { const k = hover ? .18 : 1; t += .01 * k; ry += .3 * k; rx = Math.max(-40, Math.min(35, rx + Math.sin(t) * .2 * k)); }
   cube.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
   const A = ry * Math.PI / 180, B = rx * Math.PI / 180, ca = Math.cos(A), sa = Math.sin(A), cb = Math.cos(B), sb = Math.sin(B);
-  faces.forEach((f, i) => {
+  ps.forEach((p, i) => {
     const [x, y, z] = S[i].n, x1 = x*ca + z*sa, z1 = -x*sa + z*ca, y2 = y*cb - z1*sb, z2 = y*sb + z1*cb;
-    const d = -.35*x1 - .55*y2 + .75*z2;
-    f.style.setProperty("--sh", Math.min(.45, Math.max(0, .3 - .33*d)).toFixed(2));
+    p.style.setProperty("--sh", Math.min(.45, Math.max(0, .3 - .33 * (-.35*x1 - .55*y2 + .75*z2))).toFixed(2));
   });
   requestAnimationFrame(loop);
 })();
